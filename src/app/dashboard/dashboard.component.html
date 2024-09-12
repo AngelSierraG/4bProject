@@ -1,0 +1,40 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  @if(miEstado){
+    <p>{{imprime}}</p>
+  } @else {
+    <p><b>{{imprime}}</b></p>
+  }
+
+  <p *ngIf="miEstado; else noEstado">{{imprime2}}</p>
+  <ng-template #noEstado>
+    <b>{{imprime2}}</b>
+  </ng-template>  
+
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title>
+        Card Alumnos
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      
+      <table>
+        @for(elementStudent of studentArray; track elementStudent) {
+          <tr>
+              <td>
+                {{elementStudent.id}}
+              </td>
+              <td>
+                <a (click)="showName(elementStudent.name)">{{elementStudent.name}}</a>
+              </td>
+              <td>
+                <button mat-button (click)="deleteStudent(elementStudent.id)">Delete</button>
+              </td>
+          </tr>
+        }
+      </table>
+    </mat-card-content>
+  </mat-card>
+
+</div>
